@@ -5,13 +5,13 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import java.util.UUID;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID uid ;
+    @Column(name = "id")
+    private UUID uid;
 
     @NotNull
     private String name;
@@ -24,9 +24,11 @@ public class Patient {
     private String address;
 
     @NotNull
+    @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
     @NotNull
+    @Column(name = "registered_date")
     private LocalDate dateOfRegistration;
 
     public UUID getUid() {

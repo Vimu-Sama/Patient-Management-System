@@ -4,9 +4,11 @@ import com.vimarsh.patient_service.DTO.PatientResponseDTO;
 import com.vimarsh.patient_service.model.Patient;
 import com.vimarsh.patient_service.repository.PatientRepository;
 import com.vimarsh.patient_service.mapper.PatientMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class PatientService {
 
     private final PatientRepository patientRepository;
