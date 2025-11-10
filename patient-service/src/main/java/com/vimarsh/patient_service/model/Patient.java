@@ -23,6 +23,12 @@ public class Patient {
 
     private String address;
 
+    @NotNull
+    private LocalDate dateOfBirth;
+
+    @NotNull
+    private LocalDate dateOfRegistration;
+
     public UUID getUid() {
         return uid;
     }
@@ -70,10 +76,4 @@ public class Patient {
     public void setDateOfRegistration(LocalDate dateOfRegistration) {
         this.dateOfRegistration = dateOfRegistration;
     }
-
-    @NotNull
-    private LocalDate dateOfBirth;
-
-    @NotNull
-    private LocalDate dateOfRegistration;
 }
