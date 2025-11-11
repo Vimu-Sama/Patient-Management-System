@@ -1,4 +1,4 @@
-package com.vimarsh.patient_service.DTO;
+package com.vimarsh.patient_service.dto;
 
 public class PatientResponseDTO {
     private String id;

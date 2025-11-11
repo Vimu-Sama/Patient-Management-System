@@ -1,6 +1,7 @@
 package com.vimarsh.patient_service.service;
 
-import com.vimarsh.patient_service.DTO.PatientResponseDTO;
+import com.vimarsh.patient_service.dto.PatientRequestDTO;
+import com.vimarsh.patient_service.dto.PatientResponseDTO;
 import com.vimarsh.patient_service.model.Patient;
 import com.vimarsh.patient_service.repository.PatientRepository;
 import com.vimarsh.patient_service.mapper.PatientMapper;
@@ -21,4 +22,11 @@ public class PatientService {
         List<Patient> patients = patientRepository.findAll() ;
         return patients.stream().map(PatientMapper::toDTO).toList();
     }
+
+    public PatientResponseDTO CreatePatient(PatientRequestDTO patientRequestDTO){
+        Patient patient = PatientMapper.toModel(patientRequestDTO) ;
+        patientRepository.save(patient);
+        return PatientMapper.toDTO(patient) ;
+    }
+
 }
