@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -31,6 +32,14 @@ public class GlobalExceptionHandler {
         Map<String, String> errors = new HashMap<>() ;
         log.warn("Email already exists-> {}", ex.getMessage()) ;
         errors.put("message", "Email already exists") ;
+        return ResponseEntity.badRequest().body(errors) ;
+    }
+
+    @ExceptionHandler(PatientNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handlePatientNotFoundException(PatientNotFoundException ex){
+        Map<String, String> errors = new HashMap<>() ;
+        log.warn("Exception found-> {}", ex.getMessage());
+        errors.put("message", "No user was found with provided Id") ;
         return ResponseEntity.badRequest().body(errors) ;
     }
 }
