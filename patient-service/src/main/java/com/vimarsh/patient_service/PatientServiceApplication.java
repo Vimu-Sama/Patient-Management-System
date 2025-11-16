@@ -8,9 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class PatientServiceApplication {
 
 	public static void main(String[] args) {
-//		System.out.println(">>> JVM DEFAULT = " + java.util.TimeZone.getDefault().getID());
-//		Dotenv dotenv= Dotenv.configure().directory("./").load() ;
-//		dotenv.entries().forEach(e -> System.setProperty(e.getKey(), e.getValue()));
+		System.out.println(">>> JVM DEFAULT = " + java.util.TimeZone.getDefault().getID());
+		Dotenv dotenv= Dotenv.configure().directory("./").load() ;
+		dotenv.entries().forEach(e -> System.setProperty(e.getKey(), e.getValue()));
 		SpringApplication.run(PatientServiceApplication.class, args);
 	}
 }
