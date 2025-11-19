@@ -1,19 +1,49 @@
 syntax = "proto3" ;
 
+import "google/protobuf/timestamp.proto";
+
 option java_multiple_files = true ;
 option java_package = "billing" ;
 
 service BillingService {
-  rpc CreateBillingAccount(BillingRequest) returns (BillingResponse) ;
+  rpc CreateBill(BillingRequest) returns (BillingResponse) ;
+}
+
+enum PaymentStatus{
+  PAYMENT_STATUS_UNSPECIFIED = 0;
+  PENDING = 1 ;
+  APPROVED = 2 ;
+}
+
+enum ServiceType {
+  SERVICE_TYPE_UNSPECIFIED = 0 ;
+  APPOINTMENT = 1;
+  LABTEST = 2 ;
+  PHARMACY = 3;
+}
+
+enum PaymentMethod {
+  PAYMENT_METHOD_UNSPECIFIED = 0 ;
+  CASH = 1 ;
+  UPI = 2 ;
+  NET_BANKING = 3 ;
 }
 
 message BillingRequest {
   string patientId= 1;
-  string name = 2 ;
-  string email = 3;
+  PaymentStatus paymentStatus= 2 ;
+  ServiceType serviceType = 3;
+  PaymentMethod paymentMethod = 4;
+  int32 amount = 5;
 }
 
 message BillingResponse{
-  string accountId = 1;
-  string status= 2 ;
+  string billId = 1;
+  string patientId = 2;
+  PaymentStatus paymentStatus= 3 ;
+  ServiceType serviceType = 4;
+  string serviceId = 5;
+  google.protobuf.Timestamp dateTimeOfBillGeneration = 6;
+  PaymentMethod paymentMethod = 7;
+  int32 amount = 8;
 }
