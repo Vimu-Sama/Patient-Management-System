@@ -16,8 +16,8 @@ public class BillingController {
         this.billingService = billingService ;
     }
 
-    @PutMapping
-    public ResponseEntity<BillingServiceResponseDTO> CreateBillingEntry (BillingServiceRequestDTO billRequestDTO){
-
-    }
+//    @PutMapping
+//    public ResponseEntity<BillingServiceResponseDTO> CreateBillingEntry (BillingServiceRequestDTO billRequestDTO){
+//
+//    }
 }
