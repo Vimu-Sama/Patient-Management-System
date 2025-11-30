@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/billing-service/billing-service.iml" filepath="$PROJECT_DIR$/billing-service/billing-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/grpc requests/grpc requests.iml" filepath="$PROJECT_DIR$/grpc requests/grpc requests.iml" />
     </modules>
   </component>
 </project>

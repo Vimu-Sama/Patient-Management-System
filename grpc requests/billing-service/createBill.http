@@ -1,0 +1,10 @@
+GRPC localhost:9001
+rpc BillingService/CreateBill
+
+{
+  "patientId": "dbf72f93-8edb-4e03-a4a0-a9730f0a2288",
+  "paymentStatus": "APPROVED",
+  "serviceType": "APPOINTMENT",
+  "paymentMethod": "UPI",
+  "amount": 1200
+}
