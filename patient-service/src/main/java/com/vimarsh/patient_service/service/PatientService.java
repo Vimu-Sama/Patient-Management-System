@@ -57,6 +57,9 @@ public class PatientService {
         return PatientMapper.toDTO(updatedPatient);
     }
 
+    public BillResponseDTO createBill(BillCreateRequestDTO){
+
+    }
 
     public PatientResponseDTO DeletePatient(UUID patientId) {
         Patient patient = patientRepository.findById(patientId).orElseThrow(() ->
