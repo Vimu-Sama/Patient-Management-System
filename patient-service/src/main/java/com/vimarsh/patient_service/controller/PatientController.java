@@ -1,5 +1,7 @@
 package com.vimarsh.patient_service.controller;
 
+import com.vimarsh.patient_service.dto.BillRequestDTO;
+import com.vimarsh.patient_service.dto.BillResponseDTO;
 import com.vimarsh.patient_service.dto.PatientRequestDTO;
 import com.vimarsh.patient_service.dto.PatientResponseDTO;
 import com.vimarsh.patient_service.dto.validators.CreatePatientValidationGroup;
@@ -60,5 +62,12 @@ public class PatientController {
     public ResponseEntity<PatientResponseDTO> DeletePatient(@PathVariable UUID id) {
         PatientResponseDTO patientResponseDTO = patientService.DeletePatient(id);
         return ResponseEntity.ok().body(patientResponseDTO);
+    }
+
+    @PostMapping("/createBill")
+    @Operation(summary = "Create Bill")
+    public ResponseEntity<BillResponseDTO> CreateBill(@RequestBody BillRequestDTO billRequestDTO){
+        BillResponseDTO billResponseDTO = patientService.createBill(billRequestDTO);
+        return ResponseEntity.ok().body(billResponseDTO) ;
     }
 }
