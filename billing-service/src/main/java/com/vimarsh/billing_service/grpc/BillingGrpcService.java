@@ -26,13 +26,13 @@ public class BillingGrpcService extends BillingServiceGrpc.BillingServiceImplBas
         //trying out with dummy data
         BillingResponse response = BillingResponse.newBuilder()
                 .setBillId("123")
-                .setPatientId("12345")
+                .setPatientId(billGrpcRequest.getPatientId())
                 .setPaymentStatus(PaymentStatus.APPROVED)
-                .setServiceType(ServiceType.APPOINTMENT)
-                .setServiceId("12")
+                .setServiceType(billGrpcRequest.getServiceType())
+                .setServiceId("001")
                 .setDateTimeOfBillGeneration(timestamp)
-                .setPaymentMethod(PaymentMethod.CASH)
-                .setAmount(1000).build() ;
+                .setPaymentMethod(billGrpcRequest.getPaymentMethod())
+                .setAmount(billGrpcRequest.getAmount()).build() ;
 
         responseObserver.onNext(response);
         responseObserver.onCompleted();
