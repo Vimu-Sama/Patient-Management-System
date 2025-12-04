@@ -1,6 +1,8 @@
 package com.vimarsh.billing_service.grpc;
 
 import billing.BillingServiceGrpc;
+import billing.PatientInfoRequest;
+import billing.PatientInfoResponse;
 import billing.PatientInfoServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -21,5 +23,9 @@ public class PatientInfoGrpcClient {
                 .usePlaintext().build() ;
 
         patientInfoBlockingStub= PatientInfoServiceGrpc.newBlockingStub(channel) ;
+    }
+
+    public PatientInfoResponse FetchCustomerDetails(PatientInfoRequest patientInfoRequest){
+        return patientInfoBlockingStub.getPatientInformation(patientInfoRequest) ;
     }
 }

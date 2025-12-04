@@ -4,10 +4,7 @@ import com.google.type.DateTime;
 import com.vimarsh.billing_service.enums.PaymentMethod;
 import com.vimarsh.billing_service.enums.PaymentStatus;
 import com.vimarsh.billing_service.enums.ServiceType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
@@ -23,9 +20,20 @@ public class Bill {
     private UUID PatientId;
 
     @NotNull
+    private String patientName;
+
+    @NotNull
+    private String patientEmail;
+
+    @NotNull
+    private LocalDateTime dateOfBirth ;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus ;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     private ServiceType serviceType ;
 
     @NotNull
@@ -35,10 +43,24 @@ public class Bill {
     private LocalDateTime timeOfCreation ;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod ;
 
     @NotNull
     private int amount ;
+
+    public Bill(UUID patientId, String patientName, String patientEmail, LocalDateTime dateOfBirth, PaymentStatus paymentStatus, ServiceType serviceType, UUID serviceReferenceId, LocalDateTime timeOfCreation, PaymentMethod paymentMethod, int amount) {
+        PatientId = patientId;
+        this.patientName = patientName;
+        this.patientEmail = patientEmail;
+        this.dateOfBirth = dateOfBirth;
+        this.paymentStatus = paymentStatus;
+        this.serviceType = serviceType;
+        this.serviceReferenceId = serviceReferenceId;
+        this.timeOfCreation = timeOfCreation;
+        this.paymentMethod = paymentMethod;
+        this.amount = amount;
+    }
 
     public UUID getId() {
         return id;
@@ -54,6 +76,30 @@ public class Bill {
 
     public void setPatientId(@NotNull UUID patientId) {
         PatientId = patientId;
+    }
+
+    public @NotNull String getPatientName() {
+        return patientName;
+    }
+
+    public void setPatientName(@NotNull String patientName) {
+        this.patientName = patientName;
+    }
+
+    public @NotNull String getPatientEmail() {
+        return patientEmail;
+    }
+
+    public void setPatientEmail(@NotNull String patientEmail) {
+        this.patientEmail = patientEmail;
+    }
+
+    public @NotNull LocalDateTime getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(@NotNull LocalDateTime dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public @NotNull PaymentStatus getPaymentStatus() {

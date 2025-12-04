@@ -63,11 +63,4 @@ public class PatientController {
         PatientResponseDTO patientResponseDTO = patientService.DeletePatient(id);
         return ResponseEntity.ok().body(patientResponseDTO);
     }
-
-    @PostMapping("/createBill")
-    @Operation(summary = "Create Bill")
-    public ResponseEntity<BillResponseDTO> CreateBill(@RequestBody BillRequestDTO billRequestDTO){
-        BillResponseDTO billResponseDTO = patientService.createBill(billRequestDTO);
-        return ResponseEntity.ok().body(billResponseDTO) ;
-    }
 }

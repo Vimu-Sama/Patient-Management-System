@@ -1,6 +1,6 @@
 package com.vimarsh.billing_service.enums;
 
 public enum PaymentStatus{
-    Pending,
-    Approved
+    PENDING,
+    APPROVED
 }
