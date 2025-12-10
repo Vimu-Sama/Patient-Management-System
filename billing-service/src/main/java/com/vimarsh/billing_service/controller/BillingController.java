@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name= "Bill APIs")
 public class BillingController {
 
-    private BillingServiceAPI billingServiceAPI;
+    private final BillingServiceAPI billingServiceAPI;
 
     public BillingController(BillingServiceAPI billingServiceAPI){
         this.billingServiceAPI = billingServiceAPI;

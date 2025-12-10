@@ -9,6 +9,7 @@ import com.vimarsh.patient_service.dto.PatientResponseDTO;
 import com.vimarsh.patient_service.exception.EmailAlreadyExistsException;
 import com.vimarsh.patient_service.exception.PatientNotFoundException;
 import com.vimarsh.patient_service.grpc.BillingServiceGrpcClient;
+import com.vimarsh.patient_service.kafka.Producer;
 import com.vimarsh.patient_service.model.Patient;
 import com.vimarsh.patient_service.repository.PatientRepository;
 import com.vimarsh.patient_service.mapper.PatientMapper;
@@ -23,9 +24,11 @@ public class PatientService {
 
     private final PatientRepository patientRepository;
     private final BillingServiceGrpcClient billingServiceGrpcClient ;
-    public PatientService(PatientRepository p, BillingServiceGrpcClient b) {
+    private final Producer kafkaProducer ;
+    public PatientService(PatientRepository p, BillingServiceGrpcClient b, Producer kafkaProducer) {
         this.patientRepository = p;
         this.billingServiceGrpcClient = b;
+        this.kafkaProducer = kafkaProducer ;
     }
 
     public List<PatientResponseDTO> GetAllPatients() {
@@ -44,6 +47,7 @@ public class PatientService {
         }
         Patient patient = PatientMapper.toModel(patientRequestDTO);
         patientRepository.save(patient);
+        kafkaProducer.SendEvent(patient);
         return PatientMapper.toDTO(patient);
     }
 
