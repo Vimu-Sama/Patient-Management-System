@@ -1,0 +1,57 @@
+package com.vimarsh.auth_service.model;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+
+import java.util.UUID;
+
+@Entity
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    UUID userId ;
+
+    @NotNull
+    String userName;
+
+    @NotNull
+    @Email(message = "Valid email required")
+    @Column(unique = true)
+    String userEmail ;
+
+    @NotNull
+    String userPassword;
+
+    public UUID getUserId() {
+        return userId;
+    }
+
+    public void setUserId(UUID userId) {
+        this.userId = userId;
+    }
+
+    public @NotNull String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(@NotNull String userName) {
+        this.userName = userName;
+    }
+
+    public @NotNull @Email(message = "Valid email required") String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(@NotNull @Email(message = "Valid email required") String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public @NotNull String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(@NotNull String userPassword) {
+        this.userPassword = userPassword;
+    }
+}
