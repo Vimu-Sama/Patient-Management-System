@@ -11,11 +11,25 @@ public class UserRequestDTO {
     @Email
     private String userEmail ;
 
+    @NotBlank
+    private String userPassword;
+
+    @NotBlank
+    private String userRole ;
+
     public @NotBlank String getUserName() {
         return userName;
     }
 
     public @NotBlank @Email String getUserEmail() {
         return userEmail;
+    }
+
+    public @NotBlank String getUserPassword() {
+        return userPassword;
+    }
+
+    public @NotBlank String getUserRole() {
+        return userRole;
     }
 }

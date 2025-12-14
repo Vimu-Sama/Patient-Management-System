@@ -35,7 +35,7 @@ public class PatientController {
         return ResponseEntity.ok().body(patients);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{requestedId}")
     @Operation(summary = "Get Patient By Id")
     public ResponseEntity<PatientResponseDTO> GetPatient(@PathVariable UUID requestedId){
         PatientResponseDTO patientResponseDTO = patientService.GetPatientById(requestedId) ;
