@@ -1,6 +1,6 @@
 package com.vimarsh.auth_service.dto;
 
-public class loginResponseDTO {
+public class LoginResponseDTO {
     String loginToken ;
 
     public String getLoginToken() {

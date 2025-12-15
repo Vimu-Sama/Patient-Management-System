@@ -1,7 +1,7 @@
 package com.vimarsh.auth_service.dto;
 
 
-public class loginRequestDTO {
+public class LoginRequestDTO {
     String userEmail ;
     String password;
     String role ;

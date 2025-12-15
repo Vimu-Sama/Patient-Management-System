@@ -5,23 +5,25 @@ import com.vimarsh.auth_service.dto.UserResponseDTO;
 import com.vimarsh.auth_service.mapper.UserMapper;
 import com.vimarsh.auth_service.model.User;
 import com.vimarsh.auth_service.repository.AuthRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
-import static java.lang.System.in;
 
 @Service
 public class UserService {
 
     private final AuthRepository authRepository ;
+    private final PasswordEncoder passwordEncoder ;
 
-    public UserService(AuthRepository authRepository) {
+    public UserService(AuthRepository authRepository, PasswordEncoder passwordEncoder) {
         this.authRepository= authRepository ;
+        this.passwordEncoder = passwordEncoder ;
     }
-
 
     public List<UserResponseDTO> GetAllUsers() {
         List<User> users = authRepository.findAll() ;
@@ -29,7 +31,7 @@ public class UserService {
         for(var itr : users){
             userResponseDTOs.add(UserMapper.toDTO(itr)) ;
         }
-        return userResponseDTOs;
+        return userResponseDTOs ;
     }
 
     public UserResponseDTO GetUserById(UUID userId) {
@@ -52,6 +54,10 @@ public class UserService {
         return userResponseDTO ;
     }
 
+    public Optional<User> FindUserByEmail(String userEmail){
+        return authRepository.findByUserEmail(userEmail) ;
+    }
+
     public UserResponseDTO CreateUser(UserRequestDTO userRequestDTO){
         User user = new User(
                 userRequestDTO.getUserName(),
@@ -59,6 +65,7 @@ public class UserService {
                 userRequestDTO.getUserPassword(),
                 userRequestDTO.getUserRole()
         ) ;
+        user.setUserPassword(passwordEncoder.encode(user.getUserPassword())) ;
         user= authRepository.save(user) ;
         return new UserResponseDTO(
                 user.getUserId(),
