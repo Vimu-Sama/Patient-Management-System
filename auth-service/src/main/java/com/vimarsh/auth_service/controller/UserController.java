@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -26,8 +27,8 @@ public class UserController {
 
     @GetMapping
     @Operation(summary = "Get all Users")
-    public ResponseEntity<UserResponseDTO[]> GetAllUsers(){
-        UserResponseDTO[] userResponseDTO = userService.GetAllUsers() ;
+    public ResponseEntity<List<UserResponseDTO>> GetAllUsers(){
+        List<UserResponseDTO> userResponseDTO = userService.GetAllUsers() ;
         return ResponseEntity.ok().body(userResponseDTO) ;
     }
 

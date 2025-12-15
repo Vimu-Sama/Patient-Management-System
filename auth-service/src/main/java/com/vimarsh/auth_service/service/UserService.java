@@ -2,10 +2,12 @@ package com.vimarsh.auth_service.service;
 
 import com.vimarsh.auth_service.dto.UserRequestDTO;
 import com.vimarsh.auth_service.dto.UserResponseDTO;
+import com.vimarsh.auth_service.mapper.UserMapper;
 import com.vimarsh.auth_service.model.User;
 import com.vimarsh.auth_service.repository.AuthRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,15 +23,11 @@ public class UserService {
     }
 
 
-    public UserResponseDTO[] GetAllUsers() {
+    public List<UserResponseDTO> GetAllUsers() {
         List<User> users = authRepository.findAll() ;
-        int n =users.size() ;
-        UserResponseDTO[] userResponseDTOs = new UserResponseDTO[n] ;
-        for(int i=0;i<n;i++){
-            userResponseDTOs[i].setUserId(users.get(i).getUserId());
-            userResponseDTOs[i].setUserName(users.get(i).getUserName());
-            userResponseDTOs[i].setUserEmail(users.get(i).getUserEmail());
-            userResponseDTOs[i].setUserRole(users.get(i).getRole());
+        List<UserResponseDTO> userResponseDTOs= new ArrayList<>();
+        for(var itr : users){
+            userResponseDTOs.add(UserMapper.toDTO(itr)) ;
         }
         return userResponseDTOs;
     }
