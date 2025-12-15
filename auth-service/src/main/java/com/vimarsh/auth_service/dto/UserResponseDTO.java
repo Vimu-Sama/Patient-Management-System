@@ -34,6 +34,22 @@ public class UserResponseDTO {
         this.userRole = userRole;
     }
 
+    public UUID getUserId() {
+        return userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
     @Override
     public String toString() {
         return "User id-> "+ userId + "\n User Name-> " + userName + "\n User Email-> " + userEmail
