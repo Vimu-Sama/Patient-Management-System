@@ -30,4 +30,13 @@ public class AuthService {
                 .filter((u)-> passwordEncoder.matches(loginRequestDTO.getPassword(), u.getUserPassword()))
                 .map(u -> jwtUtil.GenerateToken(u.getUserEmail(), u.getRole()));
     }
+
+    public boolean validateToken(String token) {
+        try{
+            jwtUtil.validateToken(token) ;
+            return true;
+        } catch(Exception e){
+            return false;
+        }
+    }
 }

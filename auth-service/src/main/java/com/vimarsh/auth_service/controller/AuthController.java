@@ -7,11 +7,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.coyote.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.Option;
 import java.util.Optional;
@@ -33,5 +32,18 @@ public class AuthController {
         Optional<String> token= authService.Authenticate(loginRequestDTO) ;
         return token.map(s -> ResponseEntity.ok().body(new LoginResponseDTO(s))).orElseGet(() ->
                 ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/validate")
+    public ResponseEntity<Void> ValidateToken(@RequestHeader("Authorization")
+                                                  String authHeader){
+        if(authHeader==null || !authHeader.startsWith("Bearer ")) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build() ;
+        }
+        if(authService.validateToken(authHeader.substring(7))){
+            return ResponseEntity.status(HttpStatus.OK).build() ;
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build() ;
+        }
     }
 }
