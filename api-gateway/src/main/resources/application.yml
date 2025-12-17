@@ -5,6 +5,36 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: auth-service-route
+          uri: http://auth-service:4006
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - StripPrefix=1
+
+        - id: user-service-route
+          uri: http://auth-service:4006
+          predicates:
+            - Path=/api/users/**
+          filters:
+            - StripPrefix=1
+
+        # Swagger UI
+        - id: auth-service-swagger-ui
+          uri: http://auth-service:4006
+          predicates:
+            - Path=/auth/swagger-ui/**
+          filters:
+            - StripPrefix=1
+
+        # OpenAPI JSON
+        - id: auth-service-api-docs
+          uri: http://auth-service:4006
+          predicates:
+            - Path=/auth/api-docs/**
+          filters:
+            - StripPrefix=1
+
         - id: patient-service-route
           uri: http://patient-service:4000
           predicates:
@@ -15,6 +45,6 @@ spring:
         - id: patient-service-api-docs
           uri: http://patient-service:4000
           predicates:
-            - Path=/api-docs/patients
+            - Path=swagger-ui/index.html
           filters:
             - RewritePath=/api-docs/patients,/v3/api-docs
