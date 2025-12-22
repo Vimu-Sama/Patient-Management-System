@@ -1,9 +1,7 @@
 # 🏥 Patient Management System
 
-A **production-oriented backend system** built with Spring Boot to manage patient data securely and efficiently.  
+A **production-oriented backend system** built with Spring Boot to manage patient data securely and efficiently, keeping in mind the various APIs and services required for the patients to register to when using a centralised system which answers to all their needs.  
 This project demonstrates **real-world backend engineering skills** including REST API design, authentication, service isolation, database modeling, and API documentation.
-
-> 🎯 Built to showcase backend expertise for software engineering roles.
 
 ---
 
@@ -16,21 +14,24 @@ This project demonstrates **real-world backend engineering skills** including RE
 - Swagger/OpenAPI documentation
 - PostgreSQL + JPA ORM
 - Docker-ready microservice structure
+- AWS(local) Deployment
 
 ---
 
 ## 🧠 Tech Stack
 
 | Layer | Technology |
-|-----|------------|
+|------|------------|
 | Language | Java 21 |
 | Framework | Spring Boot 3 |
 | Security | Spring Security + JWT |
 | ORM | Spring Data JPA |
-| Database | PostgreSQL (H2 for local) |
-| API Docs | Springdoc OpenAPI (Swagger UI) |
+| Database | PostgreSQL (H2 for local development) |
+| API Documentation | Springdoc OpenAPI (Swagger UI) |
 | Build Tool | Maven |
 | Containerization | Docker |
+| Messaging | Apache Kafka |
+| Inter-Service Communication | REST + gRPC |
 
 ---
 
@@ -55,7 +56,7 @@ Client (Postman / Frontend)
 > Add your architecture image here:
 
 ```
-docs/architecture.png
+git-image-resources\application-architecture.jpg
 ```
 
 Use this in README:
