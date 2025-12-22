@@ -55,9 +55,7 @@ Client (Postman / Frontend)
 📷 **Architecture Diagram**  
 > Add your architecture image here:
 
-```
-[git-image-resources\application-architecture.jpg](https://github.com/Vimu-Sama/Patient-Management-System/blob/master/git-image-resources/application-architecture.jpg)
-```
+![image]([https://github.com/Vimu-Sama/Vimarsh_Sharma_Inventory-System/assets/42619785/4e0e2d8c-2eb1-45d6-a371-6ff9f43e0f92](https://github.com/Vimu-Sama/Patient-Management-System/blob/master/git-image-resources/application-architecture.jpg))
 
 ---
 
