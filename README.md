@@ -56,13 +56,7 @@ Client (Postman / Frontend)
 > Add your architecture image here:
 
 ```
-git-image-resources\application-architecture.jpg
-```
-
-Use this in README:
-
-```md
-![System Architecture](docs/architecture.png)
+[git-image-resources\application-architecture.jpg](https://github.com/Vimu-Sama/Patient-Management-System/blob/master/git-image-resources/application-architecture.jpg)
 ```
 
 ---
