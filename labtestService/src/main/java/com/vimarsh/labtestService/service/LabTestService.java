@@ -5,8 +5,6 @@ import com.vimarsh.labtestService.dto.LabTestResponeDTO;
 import com.vimarsh.labtestService.exception.LabTestEntryNotFoundException;
 import com.vimarsh.labtestService.model.LabTestEntry;
 import com.vimarsh.labtestService.repository.LabTestRepository;
-import org.antlr.v4.runtime.misc.NotNull;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
