@@ -5,8 +5,11 @@ import billing.PatientInfoResponse;
 import billing.PatientInfoServiceGrpc;
 import com.vimarsh.billing_service.dto.BillingServiceRequestDTO;
 import com.vimarsh.billing_service.dto.BillingServiceResponseDTO;
+import com.vimarsh.billing_service.enums.ServiceType;
 import com.vimarsh.billing_service.grpc.PatientInfoGrpcClient;
+import com.vimarsh.billing_service.kafka.Producer;
 import com.vimarsh.billing_service.model.Bill;
+import com.vimarsh.billing_service.model.LabTestEntry;
 import com.vimarsh.billing_service.repository.BillingRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +26,7 @@ public class BillingServiceAPI {
     private static final Logger log = LoggerFactory.getLogger(BillingServiceAPI.class);
     private BillingRepository billingRepo ;
     private PatientInfoGrpcClient patientInfoGrpcClient ;
+    private Producer kafkaProducer ;
 
     public BillingServiceAPI(BillingRepository repo, PatientInfoGrpcClient grpcService){
         this.billingRepo = repo ;
@@ -60,7 +64,19 @@ public class BillingServiceAPI {
                 savedBill.getTimeOfCreation(),
                 savedBill.getAmount()
         );
+        SendEventToService(generatedBill) ;
         log.info("Data returned-> {}", responseDTO);
         return responseDTO;
+    }
+
+    public void SendEventToService(Bill bill){
+        if(bill.getServiceType() == ServiceType.LABTEST){
+            LabTestEntry labTestEntry = new LabTestEntry(
+                    bill.getPatientId(),
+                    UUID.fromString("550e8400-e29b-41d4-a716-446655440000"),
+                    bill.getAmount()
+            ) ;
+            kafkaProducer.SendEvent(labTestEntry);
+        }
     }
 }

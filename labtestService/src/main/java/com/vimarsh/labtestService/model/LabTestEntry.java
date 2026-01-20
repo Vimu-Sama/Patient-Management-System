@@ -19,6 +19,10 @@ public class LabTestEntry {
     @NotNull
     private int amount ;
 
+    public LabTestEntry() {
+
+    }
+
     public LabTestEntry(UUID patientID, UUID doctorID, int amount) {
         this.patientID = patientID;
         this.doctorID = doctorID;

@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/analytics-service/analytics-service.iml" filepath="$PROJECT_DIR$/analytics-service/analytics-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/billing-service/billing-service.iml" filepath="$PROJECT_DIR$/billing-service/billing-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/grpc requests/grpc requests.iml" filepath="$PROJECT_DIR$/grpc requests/grpc requests.iml" />
+      <module fileurl="file://$PROJECT_DIR$/labtestService/labtestService.iml" filepath="$PROJECT_DIR$/labtestService/labtestService.iml" />
       <module fileurl="file://$PROJECT_DIR$/patient-service/patient-service.iml" filepath="$PROJECT_DIR$/patient-service/patient-service.iml" />
     </modules>
   </component>

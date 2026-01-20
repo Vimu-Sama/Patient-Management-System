@@ -7,6 +7,7 @@ import com.vimarsh.labtestService.model.LabTestEntry;
 import com.vimarsh.labtestService.repository.LabTestRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -30,9 +31,10 @@ public class LabTestService {
         ) ;
     }
 
-    public void GetAllLabTestEntryByPatientId(UUID patientId){
-        LabTestEntry[] labTestEntry = new LabTestEntry[]{labTestRepository.findLabTestEntriesByPatientID(patientId)};
+    public List<LabTestEntry> getAllLabTestEntriesByPatientId(UUID patientId) {
+        return labTestRepository.findLabTestEntriesByPatientID(patientId);
     }
+
 
     public void DeleteLabTestEntryById(UUID labTestEntryId){
         LabTestEntry labTestEntry= labTestRepository.findById(labTestEntryId).orElseThrow(
