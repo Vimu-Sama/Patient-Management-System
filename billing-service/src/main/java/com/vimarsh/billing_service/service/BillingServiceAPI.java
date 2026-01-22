@@ -28,16 +28,20 @@ public class BillingServiceAPI {
     private PatientInfoGrpcClient patientInfoGrpcClient ;
     private Producer kafkaProducer ;
 
-    public BillingServiceAPI(BillingRepository repo, PatientInfoGrpcClient grpcService){
+    public BillingServiceAPI(BillingRepository repo, PatientInfoGrpcClient grpcService, Producer kafkaProducer){
         this.billingRepo = repo ;
         this.patientInfoGrpcClient = grpcService ;
+        this.kafkaProducer = kafkaProducer ;
     }
 
     public BillingServiceResponseDTO GenerateBill(BillingServiceRequestDTO billingServiceRequestDTO){
+
         PatientInfoRequest patientInfoRequest = PatientInfoRequest.newBuilder().setPatientId(
-                billingServiceRequestDTO.getPatientId().toString()
+                billingServiceRequestDTO.getPatientId()
         ).build() ;
+        log.info("Ccalled grpc client serviccce");
         PatientInfoResponse patientInfo= patientInfoGrpcClient.FetchCustomerDetails(patientInfoRequest) ;
+
         Bill generatedBill = new Bill(UUID.fromString(patientInfo.getId()),
                 patientInfo.getName(),
                 patientInfo.getEmail(),
@@ -52,6 +56,7 @@ public class BillingServiceAPI {
                 billingServiceRequestDTO.getPaymentMethod(),
                 billingServiceRequestDTO.getAmount());
         Bill savedBill =  billingRepo.save(generatedBill) ;
+        log.info("Data returned-> {}", savedBill);
         BillingServiceResponseDTO responseDTO = new BillingServiceResponseDTO(
                 savedBill.getId(),
                 savedBill.getPatientId(),

@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public class BillingServiceRequestDTO {
     @NotNull
-    private UUID patientId ;
+    private String patientId ;
 
     @NotNull
     private PaymentStatus paymentStatus ;
@@ -23,11 +23,11 @@ public class BillingServiceRequestDTO {
     @NotNull
     private int amount ;
 
-    public @NotNull UUID getPatientId() {
+    public @NotNull String getPatientId() {
         return patientId;
     }
 
-    public void setPatientId(@NotNull UUID patientId) {
+    public void setPatientId(@NotNull String patientId) {
         this.patientId = patientId;
     }
 

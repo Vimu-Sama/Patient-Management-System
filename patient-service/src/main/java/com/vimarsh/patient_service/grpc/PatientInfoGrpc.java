@@ -28,6 +28,7 @@ public class PatientInfoGrpc extends PatientInfoServiceGrpc.PatientInfoServiceIm
     @Override
     public void getPatientInformation(PatientInfoRequest patientInfoRequest,
                                       StreamObserver<PatientInfoResponse> responseStreamObserver){
+        log.info("Request received for gRPC-> {}", patientInfoRequest.getPatientId()) ;
         UUID patientId=  UUID.fromString(patientInfoRequest.getPatientId()) ;
         Patient p= patientRepository.findById(patientId).orElseThrow(() ->
                 new PatientNotFoundException("Particular ID is not present-> " + patientId)) ;

@@ -15,8 +15,9 @@ public class Consumer {
         this.labTestService = labTestService ;
     }
 
-    @KafkaListener(topics= "billing-labtest" , groupId = "labtest")
+    @KafkaListener(topics= "billing-labtest" , groupId = "labtest-service")
     public void consumeEvent(byte[] labtestByteEvent){
+        log.info("consumer reached in labtest");
         try {
             LabTestEvent labTestEvent = LabTestEvent.parseFrom(labtestByteEvent) ;
             LabTestRequestDTO labTestRequestDTO = new LabTestRequestDTO(

@@ -149,4 +149,21 @@ public class Bill {
     public void setAmount(@NotNull int amount) {
         this.amount = amount;
     }
+
+    @Override
+    public String toString() {
+        return "Bill{" +
+                "id=" + id +
+                ", PatientId=" + PatientId +
+                ", patientName='" + patientName + '\'' +
+                ", patientEmail='" + patientEmail + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", paymentStatus=" + paymentStatus +
+                ", serviceType=" + serviceType +
+                ", serviceReferenceId=" + serviceReferenceId +
+                ", timeOfCreation=" + timeOfCreation +
+                ", paymentMethod=" + paymentMethod +
+                ", amount=" + amount +
+                '}';
+    }
 }

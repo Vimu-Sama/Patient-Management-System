@@ -26,6 +26,7 @@ public class PatientInfoGrpcClient {
     }
 
     public PatientInfoResponse FetchCustomerDetails(PatientInfoRequest patientInfoRequest){
+        log.info("patient info request " + patientInfoRequest.getPatientId());
         return patientInfoBlockingStub.getPatientInformation(patientInfoRequest) ;
     }
 }
