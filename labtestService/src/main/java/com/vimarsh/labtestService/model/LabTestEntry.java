@@ -60,4 +60,15 @@ public class LabTestEntry {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
+    @Override
+    public String toString() {
+        return "LabTestEntry{" +
+                "id=" + id +
+                ", patientID=" + patientID +
+                ", doctorID=" + doctorID +
+                ", amount=" + amount +
+                '}';
+    }
+
 }

@@ -2,7 +2,6 @@ package com.vimarsh.billing_service.service;
 
 import billing.PatientInfoRequest;
 import billing.PatientInfoResponse;
-import billing.PatientInfoServiceGrpc;
 import com.vimarsh.billing_service.dto.BillingServiceRequestDTO;
 import com.vimarsh.billing_service.dto.BillingServiceResponseDTO;
 import com.vimarsh.billing_service.enums.ServiceType;
@@ -39,7 +38,7 @@ public class BillingServiceAPI {
         PatientInfoRequest patientInfoRequest = PatientInfoRequest.newBuilder().setPatientId(
                 billingServiceRequestDTO.getPatientId()
         ).build() ;
-        log.info("Ccalled grpc client serviccce");
+        log.info("Called grpc client service");
         PatientInfoResponse patientInfo= patientInfoGrpcClient.FetchCustomerDetails(patientInfoRequest) ;
 
         Bill generatedBill = new Bill(UUID.fromString(patientInfo.getId()),
@@ -54,9 +53,9 @@ public class BillingServiceAPI {
                 UUID.fromString("c621183c-1b77-4402-b230-058a5c328e1b"),
                 LocalDateTime.now(),
                 billingServiceRequestDTO.getPaymentMethod(),
-                billingServiceRequestDTO.getAmount());
+                billingServiceRequestDTO.getAmount()) ;
         Bill savedBill =  billingRepo.save(generatedBill) ;
-        log.info("Data returned-> {}", savedBill);
+        log.info("Data returned-> {}", savedBill) ;
         BillingServiceResponseDTO responseDTO = new BillingServiceResponseDTO(
                 savedBill.getId(),
                 savedBill.getPatientId(),
@@ -68,10 +67,10 @@ public class BillingServiceAPI {
                 savedBill.getPaymentMethod(),
                 savedBill.getTimeOfCreation(),
                 savedBill.getAmount()
-        );
+        ) ;
         SendEventToService(generatedBill) ;
-        log.info("Data returned-> {}", responseDTO);
-        return responseDTO;
+        log.info("Data returned-> {}", responseDTO) ;
+        return responseDTO ;
     }
 
     public void SendEventToService(Bill bill){

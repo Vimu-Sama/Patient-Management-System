@@ -24,11 +24,11 @@ public class Producer {
                 .setDoctorId(labTestEntry.getDoctorId().toString())
                 .setAmount(labTestEntry.getAmount())
         .build() ;
-
+        System.out.println("Labtest passed-> " + labTestEntry) ;
         try{
             kafkaTemplate.send("billing-labtest", labTestEvent.toByteArray()) ;
         } catch (Exception e) {
-            log.error("Unable to send event-> {}", labTestEvent);
+            log.error("Unable to send event-> {} + \nexception-> ", labTestEvent, e);
         }
     }
 

@@ -1,14 +1,11 @@
 package com.vimarsh.patient_service.controller;
 
-import com.vimarsh.patient_service.dto.BillRequestDTO;
-import com.vimarsh.patient_service.dto.BillResponseDTO;
 import com.vimarsh.patient_service.dto.PatientRequestDTO;
 import com.vimarsh.patient_service.dto.PatientResponseDTO;
 import com.vimarsh.patient_service.dto.validators.CreatePatientValidationGroup;
 import com.vimarsh.patient_service.service.PatientService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import jakarta.validation.groups.Default;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

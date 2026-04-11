@@ -23,6 +23,7 @@ public class LabTestService {
         LabTestEntry labTestEntry = new LabTestEntry(UUID.fromString(labTestRequestDTO.getPatientID()),
                 UUID.fromString(labTestRequestDTO.getDoctorID()) ,
                 labTestRequestDTO.getAmount()) ;
+        System.out.println("Labtest Entry-> " + labTestEntry) ;
         labTestRepository.save(labTestEntry) ;
         return new LabTestResponeDTO(
                 labTestEntry.getId().toString(),
@@ -34,7 +35,6 @@ public class LabTestService {
     public List<LabTestEntry> getAllLabTestEntriesByPatientId(UUID patientId) {
         return labTestRepository.findLabTestEntriesByPatientID(patientId);
     }
-
 
     public void DeleteLabTestEntryById(UUID labTestEntryId){
         LabTestEntry labTestEntry= labTestRepository.findById(labTestEntryId).orElseThrow(
